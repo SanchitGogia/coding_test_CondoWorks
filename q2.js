@@ -4,14 +4,19 @@ async function browserInst(){
     let page = await browser.newPage();
     await page.goto('https://app-dev.condoworks.co/');
     //return browser;
-    await page.type('#Email','coop.test@condoworks.co');
+    await page.type('[name="Email"]','coop.test@condoworks.co');
+    
+    //lol.type('123');
     await page.type('#Password','MyTesting711');
     await Promise.all([
         page.click('#btnSubmit'),
         page.waitForNavigation(),
         ]);
     await page.goto('https://app-dev.condoworks.co/invoices/all');
-    await page.waitForFrame();
+    await page.waitForSelector('[name="invoices.InvoiceNumber"]');
+    await page.type('[name="invoices.InvoiceNumber"]','123');
+    
+    console.log("hello");
     //const htmlString = await page.content();
     //console.log(htmlString);
     /*await Promise.all([
@@ -19,10 +24,10 @@ async function browserInst(){
         page.waitForNavigation(),
         ]);*/
     console.log("hello");
-    const f = await page.frames();
+    //const f =  page.frames();
     //console.log(f[0]);
-    const textfield = await f[0].$('#gs_invoices.InvoiceNumber');
-    console.log(textfield);
+    //const textfield = await f.$('#gs_invoices.InvoiceNumber');
+    //console.log('textfield');
     //await page.type('#gs_invoices.InvoiceNumber','123');
     /*data = await page.evaluate(()=>{
         let results = []
